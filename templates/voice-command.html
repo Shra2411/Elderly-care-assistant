@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Command - Elderly Care Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Voice Command</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('medication_reminder') }}">Medication Reminder</a></li>
+                <li><a href="{{ url_for('schedule_appointment') }}">Schedule Appointment</a></li>
+                <li><a href="{{ url_for('emergency_help') }}">Emergency Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="voice-command">
+            <h2>Voice Command</h2>
+            <button id="startVoiceCommand">🎤 Start Voice Command</button>
+            <p><strong>You said:</strong> <span id="voiceCommandText"></span></p>
+            <p><strong>Assistant Response:</strong> <span id="voiceCommandResult"></span></p>
+        </section>
+
+        <h2>Use Voice Commands</h2>
+        <p>Examples:</p>
+        <ul>
+            <li>“Remind me to take my medication at 9 AM.”</li>
+            <li>“Give me health tips.”</li>
+            <li>“Schedule a doctor’s appointment for next Monday at 10 AM.”</li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Elderly Care Assistant. All rights reserved.</p>
+    </footer>
+
+    <!-- Voice Command Script -->
+    <script>
+        const startBtn = document.getElementById("startVoiceCommand");
+        const commandText = document.getElementById("voiceCommandText");
+        const resultText = document.getElementById("voiceCommandResult");
+
+        // Check if browser supports Web Speech API
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            alert("Sorry, your browser does not support voice recognition.");
+        } else {
+            const recognition = new SpeechRecognition();
+            recognition.lang = "en-US";
+            recognition.interimResults = false;
+
+            startBtn.addEventListener("click", () => {
+                resultText.innerText = "Listening...";
+                recognition.start();
+            });
+
+            recognition.onresult = function(event) {
+                const userCommand = event.results[0][0].transcript;
+                commandText.innerText = userCommand;
+
+                // Send command to Flask backend
+                fetch("/process-voice", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ command: userCommand })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    resultText.innerText = data.response;
+                })
+                .catch(err => {
+                    resultText.innerText = "Error: " + err.message;
+                });
+            };
+
+            recognition.onerror = function(event) {
+                resultText.innerText = "Error: " + event.error;
+            };
+        }
+    </script>
+</body>
+</html>

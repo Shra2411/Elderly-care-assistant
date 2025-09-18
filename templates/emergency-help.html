@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Emergency Help - Elderly Care Assistant</title> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .emergency-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+        }
+        .call-btn {
+            background-color: #d9534f; /* red */
+        }
+        .call-btn:hover {
+            background-color: #c9302c;
+        }
+        .sms-btn {
+            background-color: #0275d8; /* blue */
+        }
+        .sms-btn:hover {
+            background-color: #025aa5;
+        }
+    </style>
+</head> 
+<body> 
+    <header> 
+        <h1>Emergency Help</h1> 
+        <nav> 
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('voice_command') }}">Voice Command</a></li>
+                <li><a href="{{ url_for('medication_reminder') }}">Medication Reminder</a></li>
+                <li><a href="{{ url_for('schedule_appointment') }}">Schedule Appointment</a></li>
+            </ul> 
+        </nav> 
+    </header> 
+
+    <main> 
+        <h2>Access Emergency Help</h2> 
+        <p>In case of an emergency, you can quickly contact help:</p> 
+        
+        <!-- Emergency Buttons -->
+        <a href="tel:9527458227" class="emergency-btn call-btn">📞 Call Emergency</a>
+        <a href="https://wa.me/919527458227?text=I%20need%20help%20immediately!" class="emergency-btn sms-btn" target="_blank">
+        💬 Send SMS</a>
+
+
+        <p>Your safety is our priority, and we ensure that help is just a command away.</p> 
+    </main> 
+
+    <footer> 
+        <p>&copy; 2023 Elderly Care Assistant. All rights reserved.</p> 
+    </footer>
+</body> 
+</html>

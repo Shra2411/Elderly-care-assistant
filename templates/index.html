@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elderly Care Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1><i class="fas fa-hand-holding-heart"></i> Elderly Care Assistant</h1>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('voice_command') }}"><i class="fas fa-microphone"></i> Voice Command</a></li>
+        <li><a href="{{ url_for('medication_reminder') }}"><i class="fas fa-pills"></i> Medication Reminder</a></li>
+        <li><a href="{{ url_for('schedule_appointment') }}"><i class="fas fa-calendar-check"></i> Schedule Appointment</a></li>
+        <li><a href="{{ url_for('emergency_help') }}"><i class="fas fa-phone-alt"></i> Emergency Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+ <!-- Hero Section -->
+<section id="hero">
+  <div class="hero-content">
+    <h2>Your Trusted Partner in Elderly Care</h2>
+    <p>Providing care, reminders, and safety assistance to make life easier.</p>
+    <!-- Smooth scroll to main -->
+    <a href="#submit-health-data" class="btn-primary">Get Started</a>
+  </div>
+</section>
+
+
+
+  <!-- Main Content -->
+  <main>
+    <!-- Submit Health Data Section -->
+    <section id="submit-health-data">
+      <h2><i class="fas fa-notes-medical"></i> Submit Health Data</h2>
+      <form id="healthDataForm">
+        <label for="healthCondition">Health Condition:</label>
+        <input type="text" id="healthCondition" name="healthCondition" required>
+
+        <label for="medication">Medication:</label>
+        <input type="text" id="medication" name="medication" required>
+
+        <button type="submit"><i class="fas fa-paper-plane"></i> Submit Health Data</button>
+      </form>
+      <p id="healthDataResponse"></p>
+    </section>
+
+    <!-- Fetch Health Tips Section -->
+    <section id="fetch-data">
+      <h2><i class="fas fa-lightbulb"></i> Fetch Health Tips</h2>
+      <button id="fetchHealthTips"><i class="fas fa-heartbeat"></i> Get Health Tips</button>
+      <ul id="healthTipsResponse"></ul> 
+    </section>
+  </main>
+
+<!-- Chatbot Floating Button -->
+<div id="chatbot-container">
+    <button id="chatbot-toggle"><i class="fas fa-comment-dots"></i> Chat</button>
+
+    <!-- Chatbox content (hidden by default) -->
+    <div id="chatbot-box" style="display: none;">
+        <div id="chatbox"></div>
+        <input type="text" id="chatInput" placeholder="Type your message...">
+        <button id="sendBtn"><i class="fas fa-paper-plane"></i> Send</button>
+    </div>
+</div>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Elderly Care Assistant. All rights reserved.</p>
+  </footer>
+
+  <!-- JS Script -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
