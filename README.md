@@ -20,4 +20,4 @@ A **web-based application** designed to assist elderly individuals in managing t
 - **Libraries & Tools:**  
   - Font Awesome (Icons)  
   - Web Speech API (Voice commands)  
-  - Fetch API (AJAX requests)  
+
