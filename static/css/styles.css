@@ -229,7 +229,7 @@ footer {
 }
 
 #healthTipsResponse li::before {
-  content: "💡"; /* Custom bullet */
+  content: "💡"; 
   margin-right: 8px;
   color: #ff9800;
 }
